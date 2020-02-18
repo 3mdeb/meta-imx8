@@ -1,0 +1,32 @@
+From 76cca920443167c813f32e4c4a1296c5d1fcc870 Mon Sep 17 00:00:00 2001
+From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+Date: Tue, 18 Feb 2020 16:15:29 +0000
+Subject: [PATCH] Revert "arm64: dts: fsl-imx8mq: Reserve psci area"
+
+This reverts commit 58e96981686ac63ba4742476d53c655f75d8d986.
+---
+ .../boot/dts/freescale/fsl-imx8mq-hummingboard-pulse.dts  | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-imx8mq-hummingboard-pulse.dts b/arch/arm64/boot/dts/freescale/fsl-imx8mq-hummingboard-pulse.dts
+index 0562cfdfd038..7b742cf1b696 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-imx8mq-hummingboard-pulse.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-imx8mq-hummingboard-pulse.dts
+@@ -431,14 +431,6 @@
+ 	status = "okay";
+ };
+ 
+-&resmem {
+-	/* global autoconfigured region for contiguous allocations */
+-	psci-area@0x40000000 {
+-		reg = <0x0 0x40000000 0 0x00020000>;
+-		no-map;
+-	};
+-};
+-
+ &sai1 {
+ 	pinctrl-names = "default", "pcm_b2m", "dsd";
+ 	pinctrl-0 = <&pinctrl_sai1_pcm>;
+-- 
+2.17.1
+
