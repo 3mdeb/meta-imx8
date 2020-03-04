@@ -1,41 +1,43 @@
-This README file contains information on the contents of the meta-imx8 layer.
+# BSP user manual
 
-Please see the corresponding sections below for details.
+## Prerequisites
 
-Dependencies
-============
+* Linux PC (tested on `Ubuntu 18.04 LTS`)
 
-  URI: <first dependency>
-  branch: <branch name>
+* [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) installed
 
-  URI: <second dependency>
-  branch: <branch name>
+* [kas-docker 1.0](https://github.com/siemens/kas/blob/1.0/kas-docker) script
+  downloaded and available in [PATH](https://en.wikipedia.org/wiki/PATH_(variable))
 
-  .
-  .
-  .
+  ```bash
+  wget -O ~/bin/kas-docker https://raw.githubusercontent.com/siemens/kas/1.0/kas-docker
+  ```
 
-Patches
-=======
+* [meta-imx8](https://github.com/3mdeb/meta-imx8) repository cloned
 
-Please submit any patches against the meta-imx8 layer to the xxxx mailing list (xxxx@zzzz.org)
-and cc: the maintainer:
+  ```bash
+  mkdir bsp-imx8 && cd bsp-imx8
+  git clone https://github.com/3mdeb/meta-imx8.git
+  ```
 
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
+* [bmaptool](https://source.tizen.org/documentation/reference/bmaptool) installed
 
-Table of Contents
-=================
+  ```bash
+  sudo apt install bmap-tools
+  ```
 
-  I. Adding the meta-imx8 layer to your build
- II. Misc
+> You can also use `bmap-tools`
+> [from github](https://github.com/intel/bmap-tools) if it is not available in
+> your distro.
 
+## Building
 
-I. Adding the meta-imx8 layer to your build
-=================================================
+```
+kas-docker build meta-imx8/kas.yml
+```
 
-Run 'bitbake-layers add-layer meta-imx8'
+## Flashing
 
-II. Misc
-========
-
---- replace with specific information about the meta-imx8 layer ---
+```
+sudo bmaptool copy --bmap core-image-minimal-hummingboard-pulse.wic.bmap core-image-minimal-hummingboard-pulse.wic.gz /dev/sdX
+```
